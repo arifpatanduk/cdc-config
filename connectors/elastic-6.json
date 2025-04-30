@@ -1,0 +1,31 @@
+{
+  "name": "elasticsearch_connector_6",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "tasks.max": "1",
+    "topics.regex": "ecommerce\\..*",
+    "type.name": "_doc",
+    "write.method": "upsert",
+    "connection.url": "http://elasticsearch:9200",
+
+    "schema.ignore": "true",
+    "key.ignore": "false",
+
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+
+    "behavior.on.malformed.documents": "ignore",
+    "errors.tolerance": "all",
+    "errors.log.enable": true,
+    "errors.log.include.messages": true,
+
+    "transforms": "InsertKey, ExtractId",
+    "transforms.InsertKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.InsertKey.fields": "id",
+    "transforms.ExtractId.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+    "transforms.ExtractId.field": "id"
+  }
+}
