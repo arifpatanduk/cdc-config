@@ -35,6 +35,9 @@
     "transforms.outbox.table.field.event.payload": "payload",
     "transforms.outbox.route.by.field": "aggregatetype",
     "transforms.outbox.route.topic.replacement": "ecommerce.${routedByValue}",
-    "transforms.outbox.table.expand.json.payload": "true"
+    "transforms.outbox.table.expand.json.payload": "true",
+
+    "transforms.outbox.table.json.payload.null.behavior": "optional_bytes",
+    "transforms.outbox.route.tombstone.on.empty.payload": "true"
   }
 }
